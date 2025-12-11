@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Android Studio | Official Learning Hub (Unofficial)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn Android Studio step by step: installation, setup, features, and development workflow.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      background: #ffffff;
+      color: #202124;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e0e0e0;
+      padding: 12px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: radial-gradient(circle at 30% 30%, #a5d6a7, #2e7d32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .logo-text span:first-child {
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .logo-text span:last-child {
+      font-size: 11px;
+      color: #5f6368;
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #5f6368;
+    }
+    nav a:hover {
+      color: #1a73e8;
+    }
+    .hero {
+      padding: 64px 48px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e0e0e0;
+      background: linear-gradient(135deg, #ffffff, #f1f8e9);
+    }
+    .hero-text {
+      max-width: 520px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #c5e1a5;
+      background: #f9fff3;
+      color: #5f6368;
+      margin-bottom: 12px;
+    }
+    .hero-text h1 {
+      font-size: 34px;
+      margin-bottom: 12px;
+      color: #202124;
+    }
+    .hero-text p {
+      font-size: 15px;
+      color: #5f6368;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: #1a73e8;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: #185abc;
+    }
+    .btn-secondary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid #dadce0;
+      background: #ffffff;
+      color: #1a73e8;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      background: #f8f9fa;
+    }
+    .hero-panel {
+      min-width: 260px;
+      max-width: 380px;
+      border-radius: 16px;
+      border: 1px solid #e0e0e0;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      padding: 18px 20px;
+      font-size: 13px;
+    }
+    .panel-header {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #202124;
+    }
+    .panel-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      color: #5f6368;
+    }
+    .panel-code {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      background: #0d1117;
+      color: #e6edf3;
+      font-family: Consolas, monospace;
+      font-size: 11px;
+      overflow-x: auto;
+    }
+    main {
+      padding: 32px 48px 40px;
+    }
+    section {
+      max-width: 960px;
+      margin: 0 auto 40px;
+    }
+    section h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #202124;
+    }
+    section .subtitle {
+      font-size: 13px;
+      color: #5f6368;
+      margin-bottom: 18px;
+    }
+    section p {
+      font-size: 14px;
+      color: #5f6368;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .card {
+      border-radius: 12px;
+      border: 1px solid #e0e0e0;
+      padding: 14px 14px 16px;
+      background: #ffffff;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #202124;
+    }
+    .card p {
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      color: #5f6368;
+      background: #f1f3f4;
+      margin-top: 4px;
+    }
+    .list {
+      margin-top: 6px;
+      padding-left: 18px;
+    }
+    .list li {
+      font-size: 13px;
+      color: #5f6368;
+      margin-bottom: 4px;
+    }
+    .highlight-box {
+      border-radius: 10px;
+      border-left: 3px solid #1a73e8;
+      background: #f8f9fa;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #5f6368;
+      margin-top: 10px;
+    }
+    footer {
+      border-top: 1px solid #e0e0e0;
+      padding: 16px 48px;
+      font-size: 12px;
+      color: #5f6368;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    footer a {
+      color: #1a73e8;
+      text-decoration: none;
+      font-size: 12px;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      header {
+        padding: 10px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 14px;
+      }
+      .hero {
+        padding: 40px 16px 28px;
+      }
+      main {
+        padding: 24px 16px 32px;
+      }
+      footer {
+        padding: 14px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">A</div>
+    <div class="logo-text">
+      <span>Android Studio Hub</span>
+      <span>Learning & Setup Guide (Unofficial)</span>
+    </div>
+  </div>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#features">Key features</a>
+    <a href="#setup">Setup</a>
+    <a href="#workflow">Workflow</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="badge">
+      <span>Android development</span> • <span>Tooling</span>
+    </div>
+    <h1>Android Studio for modern Android development.</h1>
+    <p>
+      Android Studio is the official Integrated Development Environment (IDE) for Android app development,
+      providing code editing, debugging, performance tools, and a complete build system in one place.
+      This site introduces the core concepts, setup, and workflow to help you get started efficiently.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary">Download Android Studio</button>
+      <button class="btn-secondary">View setup checklist</button>
+    </div>
+  </div>
+  <div class="hero-panel">
+    <div class="panel-header">Quick configuration snapshot</div>
+    <div class="panel-line">
+      <span>OS</span><span>Windows / macOS / Linux</span>
+    </div>
+    <div class="panel-line">
+      <span>Languages</span><span>Kotlin, Java</span>
+    </div>
+    <div class="panel-line">
+      <span>Minimum RAM</span><span>Recommended 8 GB+</span>
+    </div>
+    <div class="panel-line">
+      <span>Target</span><span>Phone, Tablet, TV, Wear</span>
+    </div>
+    <div class="panel-code">
+      // Typical first project<br>
+      New Project → Empty Activity<br>
+      Language: Kotlin<br>
+      Min SDK: 21+<br><br>
+      println("Hello, Android Studio")
+    </div>
+  </div>
+</section>
+
+<main>
+  <section id="overview">
+    <h2>Overview</h2>
+    <p class="subtitle">
+      Understand what Android Studio is and where it fits in the Android development ecosystem.
+    </p>
+    <p>
+      Android Studio is built on IntelliJ IDEA and is the official IDE recommended by Google for
+      building Android applications. It integrates the Android SDK, Gradle-based build system,
+      device emulators, and a rich set of development tools into a single environment.
+    </p>
+    <p>
+      Whether you are prototyping a small utility app or maintaining a large-scale production
+      application, Android Studio provides the tools you need for coding, testing, profiling,
+      and publishing Android apps.
+    </p>
+  </section>
+
+  <section id="features">
+    <h2>Key features</h2>
+    <p class="subtitle">
+      Core capabilities that make Android Studio the central tool for Android developers.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Intelligent code editor</div>
+        <p>
+          Code completion, refactoring, and navigation for Kotlin and Java, with deep awareness
+          of the Android framework and project structure.
+        </p>
+        <span class="tag">Productivity</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Layout & UI tools</div>
+        <p>
+          Visual layout editor, constraint-based design, and preview modes let you design
+          responsive interfaces for multiple device sizes.
+        </p>
+        <span class="tag">UI design</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Build & dependency management</div>
+        <p>
+          Gradle-based build system that manages variants, dependencies, and signing configurations
+          for debug and release builds.
+        </p>
+        <span class="tag">Build system</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Testing & profiling tools</div>
+        <p>
+          Integrated profiling for CPU, memory, and network usage, along with support for unit
+          tests and instrumented tests on devices and emulators.
+        </p>
+        <span class="tag">Quality</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup">
+    <h2>Setup and requirements</h2>
+    <p class="subtitle">
+      Basic environment requirements and high‑level steps for installing Android Studio.
+    </p>
+
+    <p><strong>System requirements (typical desktop):</strong></p>
+    <ul class="list">
+      <li>Recent 64‑bit operating system (Windows 10 or later, recent macOS, or modern Linux).</li>
+      <li>At least 8 GB of RAM is recommended for comfortable development.</li>
+      <li>Several gigabytes of free disk space for the IDE, SDK, and emulator images.</li>
+      <li>Stable internet connection for downloading SDK components and updates.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <strong>High‑level installation flow:</strong><br>
+      1. Download the latest Android Studio installer from the official Android developers site.<br>
+      2. Run the installer and select standard installation to include the Android SDK and virtual device tools.<br>
+      3. After installation, open Android Studio and complete the initial setup wizard.<br>
+      4. Create a new project to verify that the environment is configured correctly.
+    </div>
+  </section>
+
+  <section id="workflow">
+    <h2>Typical development workflow</h2>
+    <p class="subtitle">
+      From project creation to testing and preparing builds for release.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">1. Create a project</div>
+        <p>
+          Start from a template such as “Empty Activity” or “Basic Activity”, define the app name,
+          package name, and minimum SDK.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">2. Design the UI</div>
+        <p>
+          Use XML layouts or Jetpack Compose to define screens, following Material Design
+          guidelines for consistency and usability.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">3. Implement app logic</div>
+        <p>
+          Write Kotlin or Java code to handle navigation, data, and user interactions,
+          organizing code into clear modules and layers.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">4. Build, run, and test</div>
+        <p>
+          Run the app on emulators or physical devices, fix issues reported by the build system,
+          and iterate based on testing feedback.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">5. Prepare for release</div>
+        <p>
+          Configure versioning, app signing, and build a release variant suitable for distribution
+          through app stores or other channels.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> Android Studio Learning Hub. This page is an unofficial informational resource.</span>
+  <span><a href="#">Developer documentation</a> • <a href="#">Release notes</a></span>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Android Studio | Official Learning Hub (Unofficial)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn Android Studio step by step: installation, setup, features, and development workflow.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      background: #ffffff;
+      color: #202124;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e0e0e0;
+      padding: 12px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: radial-gradient(circle at 30% 30%, #a5d6a7, #2e7d32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .logo-text span:first-child {
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .logo-text span:last-child {
+      font-size: 11px;
+      color: #5f6368;
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #5f6368;
+    }
+    nav a:hover {
+      color: #1a73e8;
+    }
+    .hero {
+      padding: 64px 48px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e0e0e0;
+      background: linear-gradient(135deg, #ffffff, #f1f8e9);
+    }
+    .hero-text {
+      max-width: 520px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #c5e1a5;
+      background: #f9fff3;
+      color: #5f6368;
+      margin-bottom: 12px;
+    }
+    .hero-text h1 {
+      font-size: 34px;
+      margin-bottom: 12px;
+      color: #202124;
+    }
+    .hero-text p {
+      font-size: 15px;
+      color: #5f6368;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: #1a73e8;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: #185abc;
+    }
+    .btn-secondary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid #dadce0;
+      background: #ffffff;
+      color: #1a73e8;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      background: #f8f9fa;
+    }
+    .hero-panel {
+      min-width: 260px;
+      max-width: 380px;
+      border-radius: 16px;
+      border: 1px solid #e0e0e0;
+      background: #ffffff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      padding: 18px 20px;
+      font-size: 13px;
+    }
+    .panel-header {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #202124;
+    }
+    .panel-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      color: #5f6368;
+    }
+    .panel-code {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      background: #0d1117;
+      color: #e6edf3;
+      font-family: Consolas, monospace;
+      font-size: 11px;
+      overflow-x: auto;
+    }
+    main {
+      padding: 32px 48px 40px;
+    }
+    section {
+      max-width: 960px;
+      margin: 0 auto 40px;
+    }
+    section h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #202124;
+    }
+    section .subtitle {
+      font-size: 13px;
+      color: #5f6368;
+      margin-bottom: 18px;
+    }
+    section p {
+      font-size: 14px;
+      color: #5f6368;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .card {
+      border-radius: 12px;
+      border: 1px solid #e0e0e0;
+      padding: 14px 14px 16px;
+      background: #ffffff;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #202124;
+    }
+    .card p {
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      color: #5f6368;
+      background: #f1f3f4;
+      margin-top: 4px;
+    }
+    .list {
+      margin-top: 6px;
+      padding-left: 18px;
+    }
+    .list li {
+      font-size: 13px;
+      color: #5f6368;
+      margin-bottom: 4px;
+    }
+    .highlight-box {
+      border-radius: 10px;
+      border-left: 3px solid #1a73e8;
+      background: #f8f9fa;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #5f6368;
+      margin-top: 10px;
+    }
+    footer {
+      border-top: 1px solid #e0e0e0;
+      padding: 16px 48px;
+      font-size: 12px;
+      color: #5f6368;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    footer a {
+      color: #1a73e8;
+      text-decoration: none;
+      font-size: 12px;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      header {
+        padding: 10px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 14px;
+      }
+      .hero {
+        padding: 40px 16px 28px;
+      }
+      main {
+        padding: 24px 16px 32px;
+      }
+      footer {
+        padding: 14px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">A</div>
+    <div class="logo-text">
+      <span>Android Studio Hub</span>
+      <span>Learning & Setup Guide (Unofficial)</span>
+    </div>
+  </div>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#features">Key features</a>
+    <a href="#setup">Setup</a>
+    <a href="#workflow">Workflow</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="badge">
+      <span>Android development</span> • <span>Tooling</span>
+    </div>
+    <h1>Android Studio for modern Android development.</h1>
+    <p>
+      Android Studio is the official Integrated Development Environment (IDE) for Android app development,
+      providing code editing, debugging, performance tools, and a complete build system in one place.
+      This site introduces the core concepts, setup, and workflow to help you get started efficiently.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary">Download Android Studio</button>
+      <button class="btn-secondary">View setup checklist</button>
+    </div>
+  </div>
+  <div class="hero-panel">
+    <div class="panel-header">Quick configuration snapshot</div>
+    <div class="panel-line">
+      <span>OS</span><span>Windows / macOS / Linux</span>
+    </div>
+    <div class="panel-line">
+      <span>Languages</span><span>Kotlin, Java</span>
+    </div>
+    <div class="panel-line">
+      <span>Minimum RAM</span><span>Recommended 8 GB+</span>
+    </div>
+    <div class="panel-line">
+      <span>Target</span><span>Phone, Tablet, TV, Wear</span>
+    </div>
+    <div class="panel-code">
+      // Typical first project<br>
+      New Project → Empty Activity<br>
+      Language: Kotlin<br>
+      Min SDK: 21+<br><br>
+      println("Hello, Android Studio")
+    </div>
+  </div>
+</section>
+
+<main>
+  <section id="overview">
+    <h2>Overview</h2>
+    <p class="subtitle">
+      Understand what Android Studio is and where it fits in the Android development ecosystem.
+    </p>
+    <p>
+      Android Studio is built on IntelliJ IDEA and is the official IDE recommended by Google for
+      building Android applications. It integrates the Android SDK, Gradle-based build system,
+      device emulators, and a rich set of development tools into a single environment.
+    </p>
+    <p>
+      Whether you are prototyping a small utility app or maintaining a large-scale production
+      application, Android Studio provides the tools you need for coding, testing, profiling,
+      and publishing Android apps.
+    </p>
+  </section>
+
+  <section id="features">
+    <h2>Key features</h2>
+    <p class="subtitle">
+      Core capabilities that make Android Studio the central tool for Android developers.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Intelligent code editor</div>
+        <p>
+          Code completion, refactoring, and navigation for Kotlin and Java, with deep awareness
+          of the Android framework and project structure.
+        </p>
+        <span class="tag">Productivity</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Layout & UI tools</div>
+        <p>
+          Visual layout editor, constraint-based design, and preview modes let you design
+          responsive interfaces for multiple device sizes.
+        </p>
+        <span class="tag">UI design</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Build & dependency management</div>
+        <p>
+          Gradle-based build system that manages variants, dependencies, and signing configurations
+          for debug and release builds.
+        </p>
+        <span class="tag">Build system</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Testing & profiling tools</div>
+        <p>
+          Integrated profiling for CPU, memory, and network usage, along with support for unit
+          tests and instrumented tests on devices and emulators.
+        </p>
+        <span class="tag">Quality</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="setup">
+    <h2>Setup and requirements</h2>
+    <p class="subtitle">
+      Basic environment requirements and high‑level steps for installing Android Studio.
+    </p>
+
+    <p><strong>System requirements (typical desktop):</strong></p>
+    <ul class="list">
+      <li>Recent 64‑bit operating system (Windows 10 or later, recent macOS, or modern Linux).</li>
+      <li>At least 8 GB of RAM is recommended for comfortable development.</li>
+      <li>Several gigabytes of free disk space for the IDE, SDK, and emulator images.</li>
+      <li>Stable internet connection for downloading SDK components and updates.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <strong>High‑level installation flow:</strong><br>
+      1. Download the latest Android Studio installer from the official Android developers site.<br>
+      2. Run the installer and select standard installation to include the Android SDK and virtual device tools.<br>
+      3. After installation, open Android Studio and complete the initial setup wizard.<br>
+      4. Create a new project to verify that the environment is configured correctly.
+    </div>
+  </section>
+
+  <section id="workflow">
+    <h2>Typical development workflow</h2>
+    <p class="subtitle">
+      From project creation to testing and preparing builds for release.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">1. Create a project</div>
+        <p>
+          Start from a template such as “Empty Activity” or “Basic Activity”, define the app name,
+          package name, and minimum SDK.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">2. Design the UI</div>
+        <p>
+          Use XML layouts or Jetpack Compose to define screens, following Material Design
+          guidelines for consistency and usability.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">3. Implement app logic</div>
+        <p>
+          Write Kotlin or Java code to handle navigation, data, and user interactions,
+          organizing code into clear modules and layers.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">4. Build, run, and test</div>
+        <p>
+          Run the app on emulators or physical devices, fix issues reported by the build system,
+          and iterate based on testing feedback.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">5. Prepare for release</div>
+        <p>
+          Configure versioning, app signing, and build a release variant suitable for distribution
+          through app stores or other channels.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> Android Studio Learning Hub. This page is an unofficial informational resource.</span>
+  <span><a href="#">Developer documentation</a> • <a href="#">Release notes</a></span>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
