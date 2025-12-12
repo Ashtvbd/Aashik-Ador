@@ -4,7 +4,7 @@ Welcome to the official **Android Studio Documentation** created by **ASH TV Dev
 This project provides a clean, modern, multi‑page documentation website with dark/light mode, sidebar navigation, and a professional layout.
 
 Live Site:  
-👉 https://ashtvbd.github.io/android-studio-ash/
+👉 https://ashtvbd.github.io/aashikador
 
 ---
 
